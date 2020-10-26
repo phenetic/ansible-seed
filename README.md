@@ -1,8 +1,9 @@
 # Ansible Seed Template Repo
 
-## Roles
+## [Roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#using-roles-at-the-play-level)
 
-https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#using-roles-at-the-play-level
+The role `senseless-nginx` contains a minimal role bootstrapped manually.
+`kafka` and `zookeeper` had been created using `ansible-galaxy role init <role-name>` which creates a lot boilerplate to clean up before commmit. 
 
 You can pass other keywords to the roles option:
 
