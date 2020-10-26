@@ -1,0 +1,12 @@
+---
+- name: ensure nginx is installed
+  yum:
+    name: nginx
+    state: latest
+  notify: restart nginx
+
+- name: configure something
+  template:
+    src: something.conf.j2
+    dest: /tmp/something.conf
+  notify: restart nginx

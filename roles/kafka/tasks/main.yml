@@ -1,0 +1,14 @@
+---
+- include: user.yml
+
+- include: config.yml
+
+- meta: flush_handlers
+
+# Restart one host after the other
+- name: "Restart Kafka"
+  include_tasks: "serial/restart.yml"
+  loop: "{{ play_hosts }}" # we use `play_hosts` here to ensure only hosts in play (e.g. via --limit) will be handled at restart
+  loop_control:
+    loop_var: kafka_host
+  when: kafka_rolling_restart and hostvars[kafka_host].inventory_hostname == inventory_hostname

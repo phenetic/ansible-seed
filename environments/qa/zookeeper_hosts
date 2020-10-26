@@ -1,0 +1,8 @@
+[zookeeper]
+zk001
+zk002
+zk003
+
+[zookeeper:vars]
+ansible_user=changeme
+zookeeper_foo=bar

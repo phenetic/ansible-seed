@@ -1,0 +1,6 @@
+---
+- name: install kafka
+  hosts: kafka
+  roles:
+#    - role: openjdk
+    - role: kafka

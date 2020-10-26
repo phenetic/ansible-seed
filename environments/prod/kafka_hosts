@@ -1,0 +1,8 @@
+[kafka]
+kafka001 kafka_broker_id=1
+kafka002 kafka_broker_id=2
+kafka003 kafka_broker_id=3
+
+[kafka:vars]
+ansible_user=changeme
+kafka_zookeeper_connect=zk001:2181,zk002:2181,zk003:2181

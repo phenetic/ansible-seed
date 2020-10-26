@@ -1,0 +1,4 @@
+---
+- name: set kafka rolling restart flag
+  set_fact:
+    kafka_rolling_restart: true

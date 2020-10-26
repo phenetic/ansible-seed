@@ -1,0 +1,11 @@
+---
+- name: ensure group
+  group:
+    name: kafka
+
+- name: ensure user
+  user:
+    name: kafka
+    group: kafka
+    shell: /bin/false
+    create_home: false

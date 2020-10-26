@@ -1,0 +1,22 @@
+---
+- name: "stop kafka-health-check so it removes health check topics at kafka[broker.id={{ kafka_config["broker.id"] }}]"
+  any_errors_fatal: true
+  systemd:
+    name: kafka-health-check
+    state: stopped
+
+- name: "restart kafka[broker.id={{ kafka_config["broker.id"] }}]"
+  any_errors_fatal: true
+  systemd:
+    name: kafka
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+- name: restart kafka-health-check as it sometimes report failure when kafka has been restarted
+  any_errors_fatal: true
+  systemd:
+    name: kafka-health-check
+    state: restarted
+
+- include: '../perform-health-check.yml'

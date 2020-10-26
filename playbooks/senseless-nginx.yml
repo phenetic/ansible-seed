@@ -1,0 +1,5 @@
+---
+- name: install senseless nginx
+  hosts: senseless_nginx
+  roles:
+    - role: senseless-nginx

@@ -1,0 +1,11 @@
+---
+- name: "Waiting for broker {{ inventory_hostname }} (broker.id={{ kafka_config["broker.id"] }}) to get ready..."
+  any_errors_fatal: true
+  uri:
+    url: "http://{{ inventory_hostname }}:8000"
+    status_code: 200
+  register: kafka_health
+  changed_when: false
+  until: 'kafka_health.json is defined and kafka_health.json.status == "sync"'
+  delay: 5
+  retries: "{{ '%i' % ((kafka_initialization_timeout | int) / 5) }}"

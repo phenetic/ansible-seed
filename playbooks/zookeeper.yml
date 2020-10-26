@@ -1,0 +1,6 @@
+---
+- name: install zookeeper
+  hosts: zookeeper
+  roles:
+#    - role: openjdk
+    - role: zookeeper

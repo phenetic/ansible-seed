@@ -1,0 +1,6 @@
+---
+- name: render kafka config
+  copy:
+    dest: /etc/kafka/server.properties
+    content: "{{ kafka_default_config | combine(kafka_config) }}"
+  notify: set kafka rolling restart flag

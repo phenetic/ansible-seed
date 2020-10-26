@@ -1,0 +1,4 @@
+---
+kafka_default_config:
+  "min.insync.replicas": 2
+kafka_config: {}

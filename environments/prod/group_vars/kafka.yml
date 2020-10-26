@@ -1,0 +1,4 @@
+---
+kafka_config:
+  "log.dirs": /var/lib/kafka/logs-0/data,/var/lib/kafka/logs-1/data
+  "min.insync.replicas": 2
