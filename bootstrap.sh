@@ -38,21 +38,18 @@ ansible_user=changeme
 nginx_config_foo=baz
 EOF
 
-  echo "---" > "./environments/${environment}/group_vars/kafka.yml"
-  echo "---" > "./environments/${environment}/group_vars/zookeeper.yml"
-  echo "---" > "./environments/${environment}/group_vars/senseless_nginx.yml"
+  [[ ! -f "./environments/${environment}/group_vars/kafka.yml" ]] && echo "---" > "./environments/${environment}/group_vars/kafka.yml"
+  [[ ! -f "./environments/${environment}/group_vars/zookeeper.yml" ]] && echo "---" > "./environments/${environment}/group_vars/zookeeper.yml"
+  [[ ! -f "./environments/${environment}/group_vars/senseless_nginx.yml" ]] && echo "---" > "./environments/${environment}/group_vars/senseless_nginx.yml"
 done
 
 mkdir -p playbooks
-echo "---" > playbooks/kafka.yml
-echo "---" > playbooks/zookeeper.yml
+[[ ! -f playbooks/kafka.yml ]] && echo "---" > playbooks/kafka.yml
+[[ ! -f playbooks/zookeeper.yml ]] && echo "---" > playbooks/zookeeper.yml
+[[ ! -f playbooks/senseless-nginx.yml ]] && echo "---" > playbooks/senseless-nginx.yml
 
 # https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-multiple-roles-from-a-file
-cat >>EOF > requirements.yml
-# - name: nginx_role
-#   src: https://github.com/bennojoy/nginx
-#   version: master
-EOF
+[[ ! -f requirements.yml ]] && echo "---" > requirements.yml
 
 # install roles defined at requirements
 # ansible-galaxy install -r requirements.yml
@@ -77,11 +74,6 @@ mkdir -p roles
 (
   cd roles
 
-  if [[ ! -d "kafka" ]]; then
-    ansible-galaxy role init kafka
-  fi
-
-  if [[ ! -d "zookeeper" ]]; then
-    ansible-galaxy role init zookeeper
-  fi
+  [[ ! -d "kafka" ]] && ansible-galaxy role init kafka
+  [[ ! -d "zookeeper" ]] && ansible-galaxy role init zookeeper
 )

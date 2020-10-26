@@ -1,0 +1,8 @@
+[senseless_nginx]
+senseless-nginx001
+senseless-nginx002 nginx_config_foo=foobar
+senseless-nginx003
+
+[senseless_nginx:vars]
+ansible_user=changeme
+nginx_config_foo=baz
